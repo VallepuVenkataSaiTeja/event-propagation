@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="grandparent">
+        Grandparent
+        <div id="parent">
+            Parent
+            <div id="child">
+                Child
+            </div>
+        </div>
+    </div>
+
+    <script>
+         const grandparent = document.querySelector('#grandparent');
+         const parent = document.querySelector('#parent');
+         const child = document.querySelector('#child');
+
+         grandparent.addEventListener('click', ()=>{
+            console.log('grandparent-clicked')
+         })
+
+         parent.addEventListener('click', ()=>{
+            console.log('parent-clicked')
+         })
+
+         child.addEventListener('click', (e)=>{
+            //e.stopPropagation() // This will prevent the event from bubbling up to the parent and grandparent elements
+            console.log('child-clicked')
+         },)    
+
+         // By default, events bubble up from the target element to its ancestors. So when you click on the child element, the event will first trigger the child click handler, then the parent click handler, and finally the grandparent click handler. If you want to prevent this bubbling behavior, you can use e.stopPropagation() in the child click handler. This will stop the event from propagating up to the parent and grandparent elements, so only the child click handler will be executed
+         // if you want to capture the event during the capturing phase (before it reaches the target element), you can pass true as the third argument to addEventListener. This will make the event listener execute during the capturing phase instead of the bubbling phase. For example:
+         // child.addEventListener('click', (e)=>{
+         //     console.log('child-clicked')
+         // }, true)    
+         
+    </script>
+
+</body>
+</html>
